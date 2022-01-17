@@ -28,19 +28,17 @@ const switchTheme = () => {
   const newTheme = theme === 'light' ? 'dark' : 'light';
   setTheme(newTheme);
 
-  
-
 }
 
 
 
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
     const token = await loginUser({
-      username,
+      email,
       password
     });
     setToken(token);
@@ -62,7 +60,7 @@ const switchTheme = () => {
       <form onSubmit={handleSubmit}>
         <label>
           <p>Nombre de usuario:</p>
-          <input type="text" onChange={e => setUserName(e.target.value)} />
+          <input type="text" onChange={e => setEmail(e.target.value)} />
         </label>
         <label>
           <p>Contraseña:</p>

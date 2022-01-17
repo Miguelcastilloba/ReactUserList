@@ -20,6 +20,12 @@
   --accent: darkred;
 }
 
+*{
+
+  font-family: 'Roboto', sans-serif;
+
+}
+
 
 .TopMenu {
   background-color: var(--second-background);

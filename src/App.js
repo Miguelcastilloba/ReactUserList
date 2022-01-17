@@ -7,6 +7,8 @@ import Login from './Components/Login';
 import Preferences from './Components/Preferences';
 import Header from './Components/Header';
 import useLocalStorage from 'use-local-storage'
+import useToken from './Components/useToken';
+
 
 
 
@@ -18,7 +20,7 @@ function App() {
 
   
 
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
@@ -31,6 +33,12 @@ function App() {
 
   }
 
+
+  const remove = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+ };
+
   if(!token) {
     return <Login setToken={setToken} />
   }
@@ -42,7 +50,7 @@ function App() {
     <div className="wrapper" data-theme={theme}>
 
 
-      <div className='TopMenu'> <button>Log Out</button>   <button onClick={switchTheme} >  Cambiar al tema {theme === 'light' ? 'oscuro' : 'claro'} </button></div>
+      <div className='TopMenu'> <button onClick={remove}>Log Out</button>   <button onClick={switchTheme} >  Cambiar al tema {theme === 'light' ? 'oscuro' : 'claro'} </button></div>
 
 
 
